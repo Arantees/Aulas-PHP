@@ -2,69 +2,66 @@
 
 namespace Alura\Banco\Modelo\Conta;
 
-class Conta
+abstract class Conta
 {
     private $titular;
-    private $saldo=0;
+    protected $saldo;
     private static $numeroDeContas = 0;
 
     public function __construct(Titular $titular)
-    {  
+    {
         $this->titular = $titular;
-        $this->saldo;
-        Conta::$numeroDeContas++;
+        $this->saldo = 0;
+
+        self::$numeroDeContas++;
     }
+
     public function __destruct()
     {
         self::$numeroDeContas--;
     }
 
-    public function recuperaCpf()
+    public function saca(float $valorASacar): void
+    {
+        $tarifaSaque = $valorASacar * $this->percentualTarifa();
+        $valorSaque = $valorASacar + $tarifaSaque;
+        if ($valorSaque > $this->saldo) {
+            echo "Saldo indisponível";
+            return;
+        }
+
+        $this->saldo -= $valorSaque;
+    }
+
+    public function deposita(float $valorADepositar): void
+    {
+        if ($valorADepositar < 0) {
+            echo "Valor precisa ser positivo";
+            return;
+        }
+
+        $this->saldo += $valorADepositar;
+    }
+
+    public function recuperaSaldo(): float
+    {
+        return $this->saldo;
+    }
+
+    public function recuperaNomeTitular(): string
+    {
+        return $this->titular->recuperaNome();
+    }
+
+    public function recuperaCpfTitular():string
     {
         return $this->titular->recuperaCpf();
     }
 
-    public function recuperaNome(): string
+    public static function recuperaNumeroDeContas(): int
     {
-        return $this->titular->recuperanome();
-    }
-    public function sacar(float $valorSacar)
-    {
-        if($valorSacar > $this -> saldo){
-            echo "Saldo indisponivel";
-            return;
-      }
-        $this->saldo -=$valorSacar;      
+        return self::$numeroDeContas;
     }
 
-    public function depositar($valorDepositar){
-        if($valorDepositar < 0){
-            echo "O valor precisa ser maior que zero";
-            return;
-        }
-            $this ->saldo += $valorDepositar;        
-     }
-
-    public function tranferir(float $transferencia, Conta $contaDestino)
-    {
-        if($transferencia > $this->saldo){
-            echo "Saldo indisponivel";
-        }
-        $this->sacar($transferencia);
-        $contaDestino->depositar($transferencia);
-    }
-
-    public function retornaSaldo():float
-    {
-        return $this ->saldo;
-    }    
-  
-
-public static function recuperaNumeroDeContas(): int
-    {
-        return Conta::$numeroDeContas;
-    }
+    abstract protected function percentualTarifa(): float;
 }
-
-
-

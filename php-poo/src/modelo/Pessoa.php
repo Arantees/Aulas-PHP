@@ -1,27 +1,29 @@
 <?php
 
 namespace Alura\Banco\Modelo;
-class Pessoa 
+
+class Pessoa
 {
     protected $nome;
     private $cpf;
 
-    public function __construct($nome, CPF $cpf)
+    public function __construct(string $nome, CPF $cpf)
     {
         $this->validaNomeTitular($nome);
-        $this->nome=$nome;
-        $this->cpf=$cpf;
+        $this->nome = $nome;
+        $this->cpf = $cpf;
     }
 
-    public function recuperaNome():string
+    public function recuperaNome(): string
     {
         return $this->nome;
     }
-    public function recuperaCpf():CPF
+
+    public function recuperaCpf(): string
     {
-        return $this->cpf;
+        return $this->cpf->recuperaNumero();
     }
-    
+
     protected function validaNomeTitular(string $nomeTitular)
     {
         if (strlen($nomeTitular) < 5) {

@@ -1,28 +1,28 @@
 <?php
 
-    namespace Alura\Banco\Modelo;
+namespace Alura\Banco\Modelo;
 
-    class CPF {
-        private $cpf;   
-        
+class CPF
+{
+    private $numero;
 
-        public function __construct(string $cpf)
-        {  
-            $this->cpf= $cpf;
-            $this->validacpf($cpf);
-        }  
+    public function __construct(string $numero)
+    {
+        $numero = filter_var($numero, FILTER_VALIDATE_REGEXP, [
+            'options' => [
+                'regexp' => '/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/'
+            ]
+        ]);
 
-        private function validacpf(string $cpf)
-        {
-            if (strlen($cpf) < 11 || strlen($cpf) > 15)
-            {
-                echo "CPF precisa de 11 caracteres, contando "." e \"-"/ " (usar apenas numero)";
-                exit();
-            }
-            $this->cpf= $cpf;
+        if ($numero === false) {
+            echo "Cpf inválido";
+            exit();
         }
-        public function recuperaCpf(): string
-        {
-            return $this->cpf;
-        }
+        $this->numero = $numero;
     }
+
+    public function recuperaNumero(): string
+    {
+        return $this->numero;
+    }
+}
