@@ -4,7 +4,7 @@ require_once 'autoload.php';
 
 use Alura\Banco\Service\ControladorDeBonificacoes;
 use Alura\Banco\Modelo\CPF;
-use Alura\Banco\Modelo\Funcionario\{Diretor, Gerente, Desenvolvedor,EditorVideo};
+use Alura\Banco\Modelo\Funcionario\{Diretor, EditorVideo, Gerente, Desenvolvedor};
 
 $umFuncionario = new Desenvolvedor(
     'Vinicius Dias',
@@ -16,19 +16,19 @@ $umFuncionario->sobeDeNivel();
 
 $umaFuncionaria = new Gerente(
     'Patricia',
-    new CPF('987.654.321-10'),    
+    new CPF('987.654.321-10'),
     3000
 );
 
 $umDiretor = new Diretor(
     'Ana Paula',
-    new CPF('123.951.789-11'),    
+    new CPF('123.951.789-11'),
     5000
 );
 
 $umEditor = new EditorVideo(
     'Paulo',
-    new CPF ('447.242.985-02'),    
+    new CPF('456.987.231-11'),
     1500
 );
 

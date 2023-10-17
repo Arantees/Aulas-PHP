@@ -2,7 +2,7 @@
 
 namespace Alura\Banco\Modelo;
 
-class CPF
+final class CPF
 {
     private $numero;
 
@@ -15,8 +15,7 @@ class CPF
         ]);
 
         if ($numero === false) {
-            echo "Cpf inválido";
-            exit();
+            throw new \InvalidArgumentException("O CPF precisar conter 11 numeros. Exemplo: 123.456.789-10");            
         }
         $this->numero = $numero;
     }

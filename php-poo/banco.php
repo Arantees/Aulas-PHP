@@ -2,7 +2,7 @@
 
 require_once 'autoload.php';
 
-use Alura\Banco\Modelo\Conta\{ContaCorrente, ContaPoupanca,Titular,Conta};
+use Alura\Banco\Modelo\Conta\{Titular,Conta,ContaCorrente,ContaPoupanca};
 use Alura\Banco\Modelo\{Endereco,CPF};
 
 
@@ -17,10 +17,10 @@ echo $primeiraConta->recuperaCpfTitular() . PHP_EOL;
 echo $primeiraConta->recuperaSaldo() . PHP_EOL;
 
 $patricia = new Titular(new CPF('698.549.548-10'), 'Patricia', $endereco);
-$segundaConta = new ContaCorrente($patricia);
+$segundaConta = new contaCorrente($patricia);
 var_dump($segundaConta);
 
 $outroEndereco = new Endereco('A', 'b', 'c', '1D');
-$outra = new ContaPoupanca(new Titular(new CPF('123.654.789-01'), 'Abcdefg', $outroEndereco));
+$outra = new ContaCorrente(new Titular(new CPF('123.654.789-01'), 'Abcdefg', $outroEndereco));
 unset($segundaConta);
 echo Conta::recuperaNumeroDeContas();
