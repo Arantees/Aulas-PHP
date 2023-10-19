@@ -1,5 +1,5 @@
 <?php
 
-$curso = "\n Design Patterns PHP II: Boas práticas de programação";
+$curso = "\nDesign Patterns PHP II: Boas práticas de programação";
 
-file_put_contents('cursos-php.txt', $curso, FILE_APPEND | FILE_TEXT) ;
+file_put_contents('cursos-php.txt', $curso, FILE_APPEND);
