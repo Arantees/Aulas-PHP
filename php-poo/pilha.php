@@ -6,7 +6,8 @@ function funcao1()
 
     try {
         funcao2();
-    } catch (Throwable $problema) {
+    } catch (Throwable $problema)
+    {
         echo $problema->getMessage() . PHP_EOL;
         echo $problema->getLine() . PHP_EOL;
         echo $problema->getTraceAsString() . PHP_EOL;

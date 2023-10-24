@@ -1,0 +1,29 @@
+{
+    "name": "lucas-arantes/buscador-curso",
+    "description": "Projeto que busca cursos no site da alura",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Arantees",
+            "email": "lukasarantes59@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.8",
+        "symfony/dom-crawler": "^6.3",
+        "symfony/css-selector": "^6.3"
+    },
+
+    "autoload": {
+        "files": [
+            "./Functions.php"
+        ],
+        "classmap": [
+            "./Teste.php"
+        ],        
+        "psr-4": {
+            "Alura\\BuscadorDeCursos\\": "src/"
+        }
+    }
+}
+
